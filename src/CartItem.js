@@ -1,6 +1,6 @@
 import React from 'react'
 import { useGlobalContext } from './context'
-import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
+import { FaPlusCircle, FaMinusCircle, FaTrashAlt } from "react-icons/fa";
 const CartItem = ({ id, img, title, price, amount }) => {
   const {removeItem,increaseAmount,decreaseAmount,toggleAmount} = useGlobalContext();
 
@@ -12,15 +12,13 @@ const CartItem = ({ id, img, title, price, amount }) => {
         <h4 className="item-price">${price}</h4>
         {/* remove button */}
         <button className="remove-btn" onClick={() => removeItem(id)}>
-          remove
+          <FaTrashAlt />remove
         </button>
       </div>
       <div className="cart-buttons">
         {/* increase amount */}
         <button className="amount-btn" onClick={() => toggleAmount(id, "inc")}>
-          <FaPlusCircle
-            style={{  }}
-          />
+          <FaPlusCircle className="plus-icon" />
         </button>
         {/* amount */}
         <input
@@ -31,7 +29,7 @@ const CartItem = ({ id, img, title, price, amount }) => {
         />
         {/* decrease amount */}
         <button className="amount-btn" onClick={() => toggleAmount(id, "dec")}>
-          <FaMinusCircle style={{ fill: "red", fontSize: "1.2em" }} />
+          <FaMinusCircle className="minus-icon" />
         </button>
       </div>
     </article>
