@@ -16,6 +16,7 @@ const initialState = {
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  
   const clearCart = () => {
     dispatch({
       type: "CLEAR_CART",
@@ -55,19 +56,26 @@ const AppProvider = ({ children }) => {
     })
   }
 
-  const toggleAmount = (id,type)=> {
+  const toggleAmount = (id,type,amount)=> {
     dispatch({
-      type: 'TOGGLE_AMOUNT',
+      type: "TOGGLE_AMOUNT",
       payload: {
-        id,type
-      }
-    })
+        id,
+        type,
+        amount
+      },
+    });
   }
 
+  const InputAmountChange =(amount) => {
+    dispatch({
+      type: 'INPUT_AMOUNT_CHANGE',
+      payload: amount
+    })
+  }
   useEffect(() => {
     fetchData()
   },[])
-
 
   useEffect(() => {
     dispatch({
@@ -83,7 +91,8 @@ const AppProvider = ({ children }) => {
         removeItem,
         increaseAmount,
         decreaseAmount,
-        toggleAmount
+        toggleAmount,
+        InputAmountChange,
       }}
     >
       {children}

@@ -20,6 +20,7 @@ Variables
   --large-screen-width: 1170px;
   --small-screen-width: 90vw;
   --fixed-width: 50rem;
+  --icon-font-size: 1.2em;
 }
 * {
   margin: 0;
@@ -266,4 +267,26 @@ hr {
   background: var(--clr-grey-5);
   border-color: transparent;
   border-width: 0.25px;
+}
+
+.cart-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.cart-buttons input {
+  max-width: 25%;
+}
+
+.plus-icon {
+ fill: rgb(76, 175, 80);
+ font-size: var(--icon-font-size);
+ margin-right: 8px;
+}
+
+.minus-icon {
+  fill: red;
+  font-size: var(--icon-font-size);
+  margin-right: 8px;
 }

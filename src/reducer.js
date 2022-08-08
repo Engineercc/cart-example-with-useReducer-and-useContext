@@ -63,6 +63,13 @@ const reducer = (state, action) => {
       let tempCart = state.cart
         .map((item) => {
           if (item.id === action.payload.id) {
+            if (action.payload.type === "custom") {
+              console.log(item.amount);
+              return {
+                ...item,
+                amount: Number(action.payload.amount),
+              };
+            }
             if (action.payload.type === "inc") {
               return {
                 ...item,
@@ -86,7 +93,8 @@ const reducer = (state, action) => {
 
     case "GET_TOTALS":
       let { total, amount } = state.cart.reduce(
-        (cartTotal, cartItem) => {  //cartTotal obje döndürür: code 2'deki değeri döndürür.
+        (cartTotal, cartItem) => {
+          //cartTotal obje döndürür: code 2'deki değeri döndürür.
           const { price, amount } = cartItem; //cartItem = cart içerisindeki elemanlar.
           const itemTotal = price * amount;
           cartTotal.total += itemTotal;
@@ -106,9 +114,16 @@ const reducer = (state, action) => {
         amount,
       };
 
+    case "INPUT_AMOUNT_CHANGE":
+      return {
+        ...state,
+        amount: action.payload,
+      };
+
     default:
       break;
   }
+
   return state;
 };
 
